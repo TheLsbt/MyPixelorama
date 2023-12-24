@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c082kmbleju17"]
+
+[ext_resource type="Script" path="res://src/global/Library.gd" id="1_uu8af"]
+
+[node name="Library" type="Node"]
+script = ExtResource("1_uu8af")
+
+[node name="Downloader" type="HTTPRequest" parent="."]

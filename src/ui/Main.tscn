@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj6pdvky0wj1r"]
+
+[ext_resource type="Script" path="res://src/ui/Main.gd" id="1_inbus"]
+[ext_resource type="Script" path="res://src/ui/NightlyPanel.gd" id="2_p7au8"]
+[ext_resource type="Script" path="res://src/ui/ReleasesPanel.gd" id="3_sh45d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oavnt"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.203922, 0.211765, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjtl4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.156863, 0.164706, 0.188235, 1)
+
+[sub_resource type="Theme" id="Theme_g7txd"]
+MainPanel/base_type = &"PanelContainer"
+MainPanel/styles/panel = SubResource("StyleBoxFlat_oavnt")
+SubPanel/base_type = &"PanelContainer"
+SubPanel/styles/panel = SubResource("StyleBoxFlat_tjtl4")
+
+[node name="Panel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g7txd")
+theme_type_variation = &"MainPanel"
+script = ExtResource("1_inbus")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Logo" type="Label" parent="HBoxContainer/Options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "My Pixelorama"
+
+[node name="Official" type="Button" parent="HBoxContainer/Options"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Official"
+
+[node name="Custom" type="Button" parent="HBoxContainer/Options"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Custom"
+
+[node name="Library" type="Button" parent="HBoxContainer/Options"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Library"
+
+[node name="Content" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="HBoxContainer/Content"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+alignment = 2
+
+[node name="PlatformLabel" type="Label" parent="HBoxContainer/Content/Header"]
+layout_mode = 2
+text = "Platform"
+
+[node name="PlatformSelector" type="OptionButton" parent="HBoxContainer/Content/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "Linux 32"
+popup/item_0/id = 0
+popup/item_1/text = "Linux 64"
+popup/item_1/id = 1
+popup/item_2/text = "Mac"
+popup/item_2/id = 2
+popup/item_3/text = "Windows 32"
+popup/item_3/id = 3
+popup/item_4/text = "Windows 64"
+popup/item_4/id = 4
+
+[node name="Official" type="VBoxContainer" parent="HBoxContainer/Content"]
+layout_mode = 2
+
+[node name="NightlyPanel" type="PanelContainer" parent="HBoxContainer/Content/Official"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"SubPanel"
+script = ExtResource("2_p7au8")
+
+[node name="Content" type="VBoxContainer" parent="HBoxContainer/Content/Official/NightlyPanel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HBoxContainer/Content/Official/NightlyPanel/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "My Nightly"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Content/Official/NightlyPanel/Content"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Content/Official/NightlyPanel/Content"]
+layout_mode = 2
+text = "Make sure your  nightly match's your"
+
+[node name="PreviousContainer" type="HBoxContainer" parent="HBoxContainer/Content/Official/NightlyPanel/Content"]
+layout_mode = 2
+
+[node name="TodayLabel" type="Label" parent="HBoxContainer/Content/Official/NightlyPanel/Content/PreviousContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DateTime"
+
+[node name="Uninstall" type="Button" parent="HBoxContainer/Content/Official/NightlyPanel/Content/PreviousContainer"]
+layout_mode = 2
+text = "Uninstall"
+
+[node name="Launch" type="Button" parent="HBoxContainer/Content/Official/NightlyPanel/Content/PreviousContainer"]
+layout_mode = 2
+text = "Launch"
+
+[node name="ReleasesPanel" type="PanelContainer" parent="HBoxContainer/Content/Official"]
+layout_mode = 2
+theme_type_variation = &"SubPanel"
+script = ExtResource("3_sh45d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Content/Official/ReleasesPanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Content/Official/ReleasesPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Content/Official/ReleasesPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Releases"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Content/Official/ReleasesPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+placeholder_text = "Looking for something specific?"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Content/Official/ReleasesPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="InfoRequester" type="HTTPRequest" parent="HBoxContainer/Content/Official/ReleasesPanel"]
+
+[connection signal="item_selected" from="HBoxContainer/Content/Header/PlatformSelector" to="." method="_on_platform_selector_item_selected"]
+[connection signal="pressed" from="HBoxContainer/Content/Official/NightlyPanel/Content/PreviousContainer/Launch" to="HBoxContainer/Content/Official/NightlyPanel" method="_on_launch_pressed"]
