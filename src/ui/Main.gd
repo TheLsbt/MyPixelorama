@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var nightly_panel := %NightlyPanel as NightlyPanel
 @onready var platform_selector: OptionButton = %PlatformSelector
+@onready var releases_panel: PanelContainer = %ReleasesPanel
 
 var releases_url := "https://api.github.com/repos/Orama-Interactive/Pixelorama/releases"
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 
 func update_ui() -> void:
 	nightly_panel.update_ui()
+	releases_panel.update_ui()
 
 
 func _on_libray_installed() -> void:

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3jumvn24f2mh"]
+
+[ext_resource type="Script" path="res://src/ui/Cards/ReleaseCard.gd" id="1_jnhue"]
+
+[node name="ReleaseCard" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SubPanel"
+script = ExtResource("1_jnhue")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.431373)
+text = "Name • Tag • PublishDate"
+
+[node name="DownloadLaunch" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Assets" type="Label" parent="Content/DownloadLaunch"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Asset(s) available for your platform."
+
+[node name="Uninstall" type="Button" parent="Content/DownloadLaunch"]
+layout_mode = 2
+text = "Uninstall"
+
+[node name="Launch" type="Button" parent="Content/DownloadLaunch"]
+layout_mode = 2
+text = "Download"
+
+[connection signal="pressed" from="Content/DownloadLaunch/Launch" to="." method="_on_launch_pressed"]

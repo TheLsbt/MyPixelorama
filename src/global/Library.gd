@@ -15,9 +15,11 @@ var date := Time.get_date_string_from_system(true)
 
 var _bin : Array = []
 
-func _ready() -> void:
-	return
-	add_to_download_queue(Type.Nightly, Platform.WINDOWS64, "nightly", "https://nightly.link/Orama-Interactive/Pixelorama/workflows/dev-desktop-builds/master/Windows-64bit.zip")
+
+func has_pixelorama(tag: String, platform: Platform) -> bool:
+	return DirAccess.dir_exists_absolute(
+		"user://bin/release/" + tag + "/" + get_platform_as_string(prefered_platform) + "/"
+	)
 
 
 func add_to_download_queue(type: Type, platform: Platform, tag: String, url: String) -> void:
@@ -68,7 +70,7 @@ func download_next() -> void:
 	if item.type == Type.Nightly:
 		save_path = "user://bin/nightly/" + date + "/" + get_platform_as_string(prefered_platform) + "/"
 	elif item.type == Type.Release:
-		save_path = "user://bin/release/" + date + get_platform_as_string(prefered_platform) + "/"
+		save_path = "user://bin/release/" + item.tag + "/" + get_platform_as_string(prefered_platform) + "/"
 	DirAccess.make_dir_recursive_absolute(save_path)
 
 	print("Installing...")
@@ -112,6 +114,8 @@ func unizp(into: String, archive_path: String) -> void:
 		if !f.get_base_dir().is_empty():
 			DirAccess.make_dir_recursive_absolute(path)
 		print(path + f)
+		if f.ends_with("/"):
+			continue
 		file = FileAccess.open(into + f, FileAccess.WRITE)
 		file.store_buffer(zip.read_file(f))
 		if (into + f).ends_with(".gz"):
